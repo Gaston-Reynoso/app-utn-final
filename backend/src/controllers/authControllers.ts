@@ -25,7 +25,7 @@ const getUsers = async (req: Request, res: Response): Promise<any> => {
 
 const register = async (req: Request, res: Response): Promise<any> => {
   try {
-    const body = req.body
+    const body = req.body //forma en que tomo la info que me envia el usuario
     // incluir validaciones
     const validate = validateUser(req.body)
 
@@ -84,7 +84,7 @@ const login = async (req: Request, res: Response): Promise<any> => {
       email: foundUser.email
     }
 
-    const JWT_SECRET = process.env.JWT_SECRET!
+    const JWT_SECRET = process.env.JWT_SECRET!// ! le indica a JS o TS que nunca va a estar vacio
 
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" })
     res.status(201).json({ token, user: { _id: foundUser._id, email: foundUser.email } })

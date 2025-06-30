@@ -55,7 +55,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:1234/api/auth/register", {
+      const response = await fetch("http://localhost:2121/api/auth/register", {
         method: "POST",
         body: JSON.stringify(newDataUser),
         headers: { "Content-Type": "application/json" }

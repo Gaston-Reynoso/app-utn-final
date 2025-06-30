@@ -14,7 +14,7 @@ const Home = () => {
 
   const fetchingProducts = async () => {
     try {
-      const response = await fetch("http://localhost:1234/api/products")
+      const response = await fetch("http://localhost:2121/api/products")
 
       if (!response.ok) {
         setError("Sesión terminada, vuelve a loguearte.")
@@ -37,7 +37,7 @@ const Home = () => {
   const handleDelete = async (product) => {
     if (confirm("Esta seguro que quieres borrar el producto?")) {
       try {
-        const response = await fetch(`http://localhost:1234/api/products/${product._id}`, {
+        const response = await fetch(`http://localhost:2121/api/products/${product._id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` }
         })

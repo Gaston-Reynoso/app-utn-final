@@ -46,7 +46,7 @@ const Dashboard = () => {
     const newDataProduct = { name, price, category }
 
     try {
-      const response = await fetch("http://localhost:1234/api/products", {
+      const response = await fetch("http://localhost:2121/api/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

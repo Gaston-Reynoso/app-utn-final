@@ -21,7 +21,8 @@ const AuthProvider = ({ children }) => {
       const { exp } = jwtDecode(token)
       // exp viene en segundos, Date.now() en ms
       return exp * 1000 < Date.now()
-    } catch (e) {
+    } catch (error) {
+     console.log(error)
       // Si jwtDecode lanza error (token mal formado), consideramos expirado
       return true
     }
@@ -48,4 +49,5 @@ const AuthProvider = ({ children }) => {
 
 const useAuth = () => useContext(AuthContext)
 
-export { AuthProvider, useAuth }
+// eslint-disable-next-line react-refresh/only-export-components
+export { AuthProvider, useAuth}
