@@ -3,14 +3,32 @@ import { Layout } from "../../components/Layout"
 import { Link } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext"
 import { FormUpdate } from "../../components/FormUpdate"
+import { ProductList } from "../../components/ProductList"
 
 const Home = () => {
   const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
   const [isEditing, setIsEditing] = useState(null)
   const [productEditing, setProductEditing] = useState(null)
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { user, logout, token } = useAuth()
+
+  const handleSearch = async () => {
+  if (searchTerm.trim() === "") {
+    setSearchResults([]); // Si no hay término, volvés a mostrar todos
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:2121/api/products/search/${searchTerm}`);
+    const data = await response.json();
+    setSearchResults(data.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   const fetchingProducts = async () => {
     try {
@@ -62,6 +80,7 @@ const Home = () => {
   }
 
   return (
+    
     <Layout>
       <h1>Lista de productos</h1>
       {user && <p>Bienvenido, {user.email}</p>}
@@ -76,8 +95,9 @@ const Home = () => {
       }
       <section className="grid-products">
         {
-          products.map((product) => {
+          (searchResults.length > 0 ? searchResults : products).map((product) => {
             return (
+              
               <div key={product._id}>
                 <h2>{product.name}</h2>
                 <p>${product.price}</p>
@@ -89,12 +109,30 @@ const Home = () => {
                   </div>
                 }
               </div>
+              
             )
           })
         }
+             
+      </section>
+      <section className="search-products">
+          <input 
+            type="text" 
+            placeholder="Buscar productos por nombre..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+          <button className="btn-search" onClick={handleSearch}>Buscar</button>
+          <button className="btn-show-all" onClick={() => {setSearchResults([]),  setSearchTerm('');}}>Mostrar todo</button>
       </section>
     </Layout>
+    
+        
+
   )
+
+  
 }
 
 export { Home }

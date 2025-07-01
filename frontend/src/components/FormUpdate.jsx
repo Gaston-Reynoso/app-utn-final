@@ -24,7 +24,7 @@ const FormUpdate = ({ product, handleCancelEditing, fetchingProducts }) => {
     // Logica para actualizar un producto
     // fetch al backend
 
-    const response = await fetch(`http://localhost:1234/api/products/${product._id}`, {
+    const response = await fetch(`http://localhost:2121/api/products/${product._id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -3,6 +3,7 @@ import { Home } from "../views/Home/Home"
 import { Login } from "../views/Login/Login"
 import { Register } from "../views/Register/Register"
 import { Dashboard } from "../views/Dashboard/Dashboard"
+import { ProductList } from "../components/ProductList"
 
 const RouterApp = () => {
   return (
