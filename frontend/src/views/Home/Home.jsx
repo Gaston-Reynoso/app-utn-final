@@ -5,6 +5,8 @@ import { useAuth } from "../../context/AuthContext"
 import { FormUpdate } from "../../components/FormUpdate"
 import { ProductList } from "../../components/ProductList"
 
+const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 const Home = () => {
   const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
@@ -22,7 +24,7 @@ const Home = () => {
   }
 
   try {
-    const response = await fetch(`http://localhost:2121/api/products/search/${searchTerm}`);
+    const response = await fetch(`${API_URL}/products/search/${searchTerm}`);
     const data = await response.json();
     setSearchResults(data.data);
   } catch (error) {
@@ -32,7 +34,7 @@ const Home = () => {
 
   const fetchingProducts = async () => {
     try {
-      const response = await fetch("http://localhost:2121/api/products")
+      const response = await fetch(`${API_URL}/products`)
 
       if (!response.ok) {
         setError("Sesión terminada, vuelve a loguearte.")
@@ -55,7 +57,7 @@ const Home = () => {
   const handleDelete = async (product) => {
     if (confirm("Esta seguro que quieres borrar el producto?")) {
       try {
-        const response = await fetch(`http://localhost:2121/api/products/${product._id}`, {
+        const response = await fetch(`${API_URL}/products/${product._id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` }
         })

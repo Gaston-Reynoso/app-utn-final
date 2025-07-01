@@ -8,9 +8,9 @@ const searchProducts = async (req: Request, res: Response): Promise<any> => {
     const term = req.params.term;
 
     const products = await Product.find({ 
-  name: { $regex: new RegExp(term, "i") } 
-  })
-  res.status(200).json({
+    name: { $regex: new RegExp(term, "i") } 
+    })
+    res.status(200).json({
     success: true,
     message: "recuperar producto por nombre",
     data: products

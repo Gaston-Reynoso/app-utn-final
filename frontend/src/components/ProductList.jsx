@@ -8,17 +8,17 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);            // Resultados a mostrar
   const [message, setMessage] = useState('');              // Mensaje si no hay resultados
 
-  //const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+  const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
   // Función para buscar productos
   const searchProducts = async (term) => {
     try {
-      const res = await fetch(`http://localhost:2121/api/products/search/${term}`, {
+      const res = await fetch(`${API_URL}/products/search/${term}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(products)
+      
       });
       const data = await res.json();
 

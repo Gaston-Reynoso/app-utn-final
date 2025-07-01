@@ -18,13 +18,15 @@ const FormUpdate = ({ product, handleCancelEditing, fetchingProducts }) => {
     setCategory(e.target.value)
   }
 
+  const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
   const handleSubmit = async (e, product, token) => {
     e.preventDefault()
 
     // Logica para actualizar un producto
     // fetch al backend
 
-    const response = await fetch(`http://localhost:2121/api/products/${product._id}`, {
+    const response = await fetch(`${API_URL}/products/${product._id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

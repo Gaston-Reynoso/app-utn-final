@@ -2,6 +2,9 @@ import { useState } from "react"
 import { Layout } from "../../components/Layout"
 import { useNavigate } from "react-router-dom"
 
+
+const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -55,7 +58,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:2121/api/auth/register", {
+      const response = await fetch(`${API_URL} /auth/register`, {
         method: "POST",
         body: JSON.stringify(newDataUser),
         headers: { "Content-Type": "application/json" }
