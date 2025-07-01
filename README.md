@@ -29,6 +29,4 @@
 
     Al escribir el nombre (o parte del nombre) de un producto y presionar “Buscar”, la aplicación muestra solo aquellos productos que coincidan.
 
-    Si no hay coincidencias, se muestra un mensaje informativo.
-
     Con el botón “Mostrar todo” se vuelve a ver la lista completa de productos.
